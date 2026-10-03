@@ -2142,6 +2142,15 @@ body { background: linear-gradient(180deg, #F4F2EC 0, #ECE8DD 560px) fixed, #ECE
 .reset-card { background: linear-gradient(180deg, #F4F1E9 0%, #ECE6D8 100%); border-color: #DCD8CC; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .reset-card { background: #242E2A; border-color: #34413B; } }
 :root[data-theme="dark"] .reset-card { background: #242E2A; border-color: #34413B; }
+
+/* Daily focus: the month-list look, a little more compact, at the top of Your day */
+.fc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.fc-head .jl-label { margin: 0; }
+.fc-line { margin: 0 0 6px; }
+.fc-list .mo-item { min-height: 40px; padding: 6px 10px; gap: 8px; grid-template-columns: 26px 24px minmax(0, 1fr); }
+.fc-list .mo-check { width: 22px; height: 22px; }
+.fc-edit { display: grid; gap: 6px; margin-top: 8px; justify-items: start; }
+.fc-addrow { list-style: none; width: 100%; }
 </style>
 
 <div class="wrap is-show">
@@ -2185,6 +2194,8 @@ body { background: linear-gradient(180deg, #F4F2EC 0, #ECE8DD 560px) fixed, #ECE
       <ul class="feat">
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Plan together with family or friends</span></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Organize tasks by category and person</span></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Plan each day by morning, afternoon and evening</span></li>
+        <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Give each day a focus, like a midweek check or a tidy-up day</span></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>See what’s not started, in progress, and done<span class="pills" aria-hidden="true"><span class="pill not_started">Not started</span><span class="pill in_progress">In progress</span><span class="pill done">Done</span></span></span></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Sort tasks by due date, or leave the date open</span></li>
         <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span><span>Carry unfinished tasks into the next week</span></li>

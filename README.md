@@ -10,6 +10,8 @@ Plan your week together, spend less time sending reminders, and see everything y
 
 - Plan together with family or friends
 - Organize tasks by category and person
+- Plan each day by morning, afternoon and evening
+- Give each day a focus, like a midweek check or a tidy-up day
 - See what's not started, in progress, and done
 - Sort tasks by due date, or leave the date open
 - Carry unfinished tasks into the next week
