@@ -1887,6 +1887,133 @@ body { background: linear-gradient(180deg, #EDEDED 0, #E1E2E2 560px) fixed, #E1E
 #homeView .navtile.locked .nt-lock { position: absolute; left: 24px; bottom: 18px; margin: 0; white-space: nowrap; }
 #homeView .navtile.locked .nt-body { padding-bottom: 60px; }
 @media (max-width: 640px) { #homeView .navtile.locked .nt-lock { left: 18px; bottom: 14px; } #homeView .navtile.locked .nt-body { padding-bottom: 50px; } }
+
+/* ================= Monthly to-do list ================= */
+.month-panel { display: grid; gap: 12px; }
+.mo-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; }
+@media (max-width: 720px) { .mo-list { grid-template-columns: minmax(0, 1fr); } }
+.mo-item { display: grid; grid-template-columns: 28px 30px minmax(0, 1fr); align-items: center; gap: 10px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-solid); min-height: 48px; }
+.mo-check { width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid var(--ink); background: transparent; padding: 0; cursor: pointer; display: grid; place-items: center; }
+.mo-check[aria-pressed="true"] { background: var(--teal, #2A9C9B); border-color: var(--teal, #2A9C9B); }
+.mo-check[aria-pressed="true"]::after { content: "✓"; color: #051016; font-weight: 700; font-size: 14px; line-height: 1; }
+.mo-check:disabled { cursor: default; }
+.mo-icon { font-size: 20px; line-height: 1; text-align: center; }
+.mo-text { font-size: 15px; line-height: 1.4; overflow-wrap: anywhere; }
+.mo-item.done .mo-text { color: var(--muted); }
+.mo-edit { display: flex; gap: 6px; align-items: center; min-width: 0; }
+.mo-edit input, .mo-add input { flex: 1; min-width: 0; padding: 7px 10px; border: 1px solid var(--line-strong); border-radius: 10px; background: var(--surface-solid); color: var(--ink); font: inherit; font-size: 14px; }
+.mo-add { display: flex; gap: 8px; }
+.mo-add[hidden] { display: none !important; }
+.mo-foot { display: flex; justify-content: flex-end; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .mo-check { border-color: var(--mint, #45E3E0); } }
+:root[data-theme="dark"] .mo-check { border-color: var(--mint, #45E3E0); }
+
+/* Weekly Summary: Highlights and Key takeaways span the full width now that Next week is gone */
+#panesummary .grid-summary { grid-template-columns: minmax(0, 1fr) !important; }
+#panesummary .grid-summary .tk-arrow { display: none !important; }
+
+/* Plan Your Week: The Plan spans the row now that Weekly routines is gone; its fields sit in one line on wide screens */
+#paneplanner .grid { grid-template-columns: minmax(0, 1fr) !important; }
+@media (min-width: 900px) {
+  #paneplanner .panel.entry #taskForm { grid-template-columns: minmax(0, 2fr) minmax(0, 1.4fr) minmax(0, 1.4fr); align-items: start; column-gap: 16px; }
+  #paneplanner .panel.entry #taskForm > .field:first-child { grid-row: span 2; }
+  #paneplanner .panel.entry #taskForm > .field:first-child textarea { min-height: 128px; }
+  #paneplanner .panel.entry #taskForm > .plan-row, #paneplanner .panel.entry #taskForm > .row-time { grid-column: 2 / 4; }
+  #paneplanner .panel.entry #taskForm > .more-opts { grid-column: 1 / -1; }
+}
+
+/* ================= Day page (replaces the week calendar) ================= */
+#calendar.calwrap { border: 0; background: none; overflow: visible; display: grid; gap: 14px; }
+.dp-page { position: relative; background: var(--surface-solid); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px 24px; display: grid; gap: 18px; }
+.dp-date { display: flex; align-items: baseline; justify-content: flex-end; gap: 12px; }
+.dp-num { font-family: var(--display); font-weight: 600; font-size: clamp(40px, 6vw, 64px); line-height: 0.9; letter-spacing: -0.04em; color: var(--teal, #2A9C9B); }
+.dp-wd { font-size: 14px; color: var(--muted); }
+.dp-cross { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-areas: "any morn" "eve aft"; margin: 6px 18px 12px; }
+.dp-cross::before, .dp-cross::after { content: ""; position: absolute; background: var(--teal, #2A9C9B); pointer-events: none; }
+.dp-cross::before { left: 50%; top: 0; bottom: 0; width: 2px; transform: translateX(-1px); }
+.dp-cross::after { top: 50%; left: 0; right: 0; height: 2px; transform: translateY(-1px); }
+.dp-anytime { grid-area: any; } .dp-morning { grid-area: morn; } .dp-evening { grid-area: eve; } .dp-afternoon { grid-area: aft; }
+.dp-q { padding: 14px 22px 22px; min-height: 170px; display: grid; align-content: start; gap: 10px; cursor: copy; border-radius: 10px; }
+.dp-q:hover { background: color-mix(in srgb, var(--mint, #45E3E0) 7%, transparent); }
+.dp-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.dp-pill { display: inline-block; background: var(--teal, #2A9C9B); color: #051016; font-family: var(--display); font-weight: 600; font-size: 14px; padding: 3px 14px; border-radius: 999px; transform: rotate(-2deg); }
+.dp-range { font-family: var(--mono); font-size: 12px; color: var(--teal, #2A9C9B); }
+.dp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.dp-item { display: flex; align-items: flex-start; gap: 8px; width: 100%; text-align: left; background: none; border: 0; padding: 3px 4px; border-radius: 8px; font: inherit; font-size: 14.5px; line-height: 1.45; color: var(--ink); cursor: pointer; }
+.dp-item:hover { background: var(--surface-sunk); }
+.dp-dot { flex: none; width: 8px; height: 8px; border-radius: 50%; margin-top: 0.5em; background: var(--c, var(--teal, #2A9C9B)); }
+.dp-what { min-width: 0; overflow-wrap: anywhere; }
+.dp-time { display: block; font-family: var(--mono); font-weight: 500; font-size: 12px; color: var(--teal, #2A9C9B); }
+.dp-item.done .dp-what { text-decoration: line-through; color: var(--muted); }
+.dp-item.big { font-weight: 700; }
+.dp-empty { color: var(--muted); font-size: 13px; }
+.dp-tick { position: absolute; font-family: var(--mono); font-size: 13px; color: var(--teal, #2A9C9B); }
+.dp-t6 { left: 50%; top: -18px; transform: translateX(6px); } .dp-t18 { left: 50%; bottom: -18px; transform: translateX(6px); }
+.dp-t12 { right: -18px; top: 50%; transform: translateY(4px); } .dp-t0 { left: -16px; top: 50%; transform: translateY(4px); }
+.dp-memo { display: grid; gap: 10px; padding-top: 6px; }
+.dp-note { display: grid; gap: 4px; padding-left: 14px; border-left: 2px solid var(--teal, #2A9C9B); }
+.dp-note p { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.dp-well b { color: var(--teal, #2A9C9B); } .dp-bad b { color: var(--wait); }
+.dp-addnote { justify-self: start; }
+@media (max-width: 640px) {
+  .dp-page { padding: 18px 14px; }
+  .dp-cross { grid-template-columns: minmax(0, 1fr); grid-template-areas: "morn" "aft" "eve" "any"; margin: 0; }
+  .dp-cross::before, .dp-cross::after, .dp-tick { display: none; }
+  .dp-q { min-height: 0; padding: 12px 6px 14px; border-bottom: 2px solid var(--teal, #2A9C9B); border-radius: 0; }
+}
+
+/* Day page in the planner's own style: same headings, muted labels, neutral lines and day-note cards */
+.dp-page { border-radius: 14px; padding: 20px 22px; gap: 14px; }
+.dp-date { justify-content: flex-start; align-items: baseline; gap: 10px; }
+.dp-num { font-family: var(--display); font-weight: 600; font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); }
+.dp-wd { font-size: 13px; color: var(--muted); }
+.dp-cross::before, .dp-cross::after { background: var(--line-strong); }
+.dp-cross::before { width: 1px; transform: none; } .dp-cross::after { height: 1px; transform: none; }
+.dp-tick { font-family: var(--body); font-size: 12px; color: var(--muted); }
+.dp-q:hover { background: var(--surface-sunk); }
+.dp-pill { background: none; color: var(--ink); font-family: var(--display); font-weight: 600; font-size: 16px; padding: 0; border-radius: 0; transform: none; }
+.dp-range { font-family: var(--body); font-size: 12.5px; color: var(--muted); }
+.dp-time { font-family: var(--body); font-weight: 500; font-size: 12.5px; color: var(--muted); }
+.dp-dot { background: var(--c, var(--muted)); }
+.dp-memo { border-top: 1px solid var(--line); padding-top: 14px; }
+.dp-memo .dn-list { margin: 0; }
+@media (max-width: 640px) { .dp-q { border-bottom: 1px solid var(--line-strong); } }
+
+/* ================= Teal-deck alignment: light streaks instead of rings, icon-first cards, glossy pills ================= */
+/* 1. Dark title cards: teal light streaks fading in from the right (no ring) */
+.wrap .home-cover::before, .wrap .top::before, .wrap .intro > header::before, .wrap .cta::before {
+  content: ""; display: block; position: absolute; z-index: -1; pointer-events: none;
+  top: 0; bottom: 0; right: 0; left: auto; width: 58%; height: auto; border: 0; border-radius: 0; box-shadow: none; transform: none;
+  background:
+    linear-gradient(90deg, #051016 0%, rgba(5, 16, 22, 0.55) 35%, rgba(5, 16, 22, 0) 70%),
+    repeating-linear-gradient(180deg, rgba(110, 236, 232, 0.30) 0 1px, rgba(42, 156, 155, 0.30) 1px 18px, rgba(20, 70, 74, 0.25) 18px 36px),
+    radial-gradient(70% 90% at 100% 55%, rgba(69, 227, 224, 0.55), rgba(42, 156, 155, 0.15) 60%, transparent 85%);
+}
+.wrap .home-cover::after, .wrap .top::after, .wrap .intro > header::after { display: none; }
+@media (max-width: 640px) { .wrap .home-cover::before, .wrap .top::before, .wrap .intro > header::before, .wrap .cta::before { width: 70%; opacity: 0.7; } }
+
+/* 2. Home tiles: icon first, then title, a thin divider, then the description (no number circles) */
+#homeView .navtile { display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 24px 24px 26px; text-align: left; }
+#homeView .navtile .nt-body { display: contents; }
+#homeView .nt-body svg { order: 1; width: 40px; height: 40px; margin-bottom: 22px; }
+#homeView .nt-head, #homeView .navtile:hover .nt-head, #homeView .navtile[aria-pressed] .nt-head { order: 2; padding: 0 0 14px; margin-bottom: 14px; border-bottom: 1px solid currentColor; border-bottom-color: color-mix(in srgb, currentColor 35%, transparent); }
+#homeView .nt-head::before { content: none !important; display: none !important; }
+#homeView .nt-desc { order: 3; max-width: 30ch; }
+#homeView .navtile.locked { padding-bottom: 62px; }
+#homeView .navtile.locked .nt-body { padding-bottom: 0; }
+@media (max-width: 640px) {
+  #homeView .navtile { padding: 18px 18px 20px; }
+  #homeView .nt-body svg { width: 30px; height: 30px; margin-bottom: 12px; }
+  #homeView .nt-head, #homeView .navtile:hover .nt-head { padding-bottom: 10px; margin-bottom: 10px; }
+  #homeView .navtile.locked { padding-bottom: 54px; }
+}
+
+/* 3. Pills on dark cards: glossy outline, like the deck's page and year tags */
+.home-cover .eyebrow, .top .eyebrow, .intro > header .eyebrow {
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.05) 60%, rgba(255, 255, 255, 0.12) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.45); color: #fff; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.top .weeknav { background: linear-gradient(100deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 60%, rgba(255, 255, 255, 0.08) 100%); border-color: rgba(255, 255, 255, 0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18); }
 </style>
 
 <div class="wrap is-show">
