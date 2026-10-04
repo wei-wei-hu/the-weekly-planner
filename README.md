@@ -13,7 +13,7 @@ Plan your week together, spend less time sending reminders, and see everything y
 - Plan each day by morning, afternoon and evening
 - Give each day a focus, like a midweek check or a tidy-up day
 - See what's not started, in progress, and done
-- Sort tasks by due date, or leave the date open
+- Keep one list for the week and star the 3 that matter most
 - Carry unfinished tasks into the next week
 - Get a summary of your week
 - Look back at previous weeks
@@ -21,7 +21,7 @@ Plan your week together, spend less time sending reminders, and see everything y
 
 ## Printable and download bundle
 
-Prefer paper? A printable pack is on the way: 13 undated pages in A4 and US Letter, with a focus for each day, a monthly to-do list, a week at a glance, daily pages and a weekly review. A bundle will also include a copy of the planner you can open in your own browser.
+Prefer paper? A printable pack is on the way: 14 undated pages in A4 and US Letter, with a focus for each day, a plan-the-week page, a monthly to-do list, a week at a glance, daily pages and a weekly review. A bundle will also include a copy of the planner you can open in your own browser.
 
 ![Four pages from the printable pack](printable-preview.jpg)
 
